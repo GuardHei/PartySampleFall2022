@@ -53,9 +53,10 @@ MonoBehaviour:
   speed: 5
   acceleration: 15
   jumpPower: 4
-  highJumpPower: 2
-  stopPower: 10
+  highJumpPower: 2.5
+  stopPower: 18
   gravity: 6
+  canMoveInAir: 0
   renderer: {fileID: 5618929923404199259}
   rigidbody: {fileID: 8721524334358914717}
   bottomOffset: 0.4
@@ -63,6 +64,7 @@ MonoBehaviour:
   currentSpeedY: 0
   touchesGround: 0
   isJumping: 0
+  hasCheckedCollision: 0
 --- !u!212 &5618929923404199259
 SpriteRenderer:
   m_ObjectHideFlags: 0

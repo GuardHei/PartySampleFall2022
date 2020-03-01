@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Debug = UnityEngine.Debug;
 
 public class PlayerController : MonoBehaviour {
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour {
 	public float stopPower = 3;
 	[Range(0f, 30f)]
 	public float gravity = 5;
+	public bool canMoveInAir;
 
 	[Header("Graphics Settings")]
 	public SpriteRenderer renderer;
@@ -81,7 +83,7 @@ public class PlayerController : MonoBehaviour {
 		bool jumpPressed = Input.GetKey(jumpKey); // Is the player holding down the jump key?
 
 		// Process horizontal speed.
-		if (touchesGround) { // Only when the player stands on the ground.
+		if (touchesGround || canMoveInAir) { // Only when the player stands on the ground or if we allow it to move in the air.
 			if (leftPressed && !rightPressed) { // Iff the resultant input is to the left, we need to accelerate the player's speed to the expected level (-speed).
 				currentSpeedX = Mathf.MoveTowards(currentSpeedX, -speed, acceleration * timeElapsed);
 			} else if (!leftPressed && rightPressed) { // Iff the resultant input is to the right, we need to accelerate the player's speed to the expected level (speed).
@@ -118,6 +120,7 @@ public class PlayerController : MonoBehaviour {
 		foreach (ContactPoint2D contact in collision.contacts) {
 			if (contact.point.y <= transform.position.y - bottomOffset) { // Player touches the ground if any contact point is lower or at the same height as the player's bottom.
 				touchesGround = true;
+				hasCheckedCollision = true;
 				return;
 			}
 		}
@@ -125,8 +128,8 @@ public class PlayerController : MonoBehaviour {
 		if (!hasCheckedCollision) {
 			touchesGround = false; // Otherwise, player is in the air.
 			hasCheckedCollision = true;
+		} else {
+			currentSpeedX = 0; // This is for better character control, try to figure out the function of this line of code by yourself!
 		}
-
-		currentSpeedX = 0; // This is for better character control, try to figure out the function of this line of code by yourself!
 	}
 }
