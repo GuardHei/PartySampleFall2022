@@ -8,6 +8,8 @@ In this semester, we will be developing a 2D platfomer together. The base projec
 
 ![Base Project Screenshot](https://s2.loli.net/2022/09/11/Cn2kGtaPMWeB1TJ.png)
 
+https://user-images.githubusercontent.com/30316509/189508791-49ec2032-10a1-43c5-a1a1-e68a77826ca1.mov
+
 ## Preparation
 
 Before we actually take a step into the game development, here are something you should do to get ready!
