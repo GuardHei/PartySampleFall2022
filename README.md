@@ -6,6 +6,8 @@ DONT PANIC AND MAKE GAMES !!!
 
 In this semester, we will be developing a 2D platfomer together. The base project includes a controllable character, and an sample scene to play with. We will use this project as a sample to learn how to make games in Unity. At the end of the semester, we will (hopefully) have our own unique jumper game done.
 
+![Base Project Screenshot](https://s2.loli.net/2022/09/11/Cn2kGtaPMWeB1TJ.png)
+
 ## Preparation
 
 Before we actually take a step into the game development, here are something you should do to get ready!
