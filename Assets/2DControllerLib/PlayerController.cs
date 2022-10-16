@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System;   
+
 
 namespace TarodevController {
     /// <summary>
@@ -13,7 +15,7 @@ namespace TarodevController {
     public class PlayerController : MonoBehaviour, IPlayerController {
         // Public for external hooks
         public Vector3 Velocity { get; private set; }
-        public FrameInput Input { get; private set; }
+        public FrameInput InputSet { get; private set; }
         public FrameInput LastInput { get; private set; }
         public bool JumpingThisFrame { get; private set; }
         public bool LandingThisFrame { get; private set; }
@@ -38,6 +40,7 @@ namespace TarodevController {
             GatherInput();
             RunCollisionChecks();
 
+            CalculatePulseForce();
             CalculateWalk(); // Horizontal movement
             CalculateJumpApex(); // Affects fall speed, so calculate before gravity
             CalculateGravity(); // Vertical movement
@@ -50,13 +53,14 @@ namespace TarodevController {
         #region Gather Input
 
         private void GatherInput() {
-            LastInput = Input;
-            Input = new FrameInput {
+            LastInput = InputSet;
+            InputSet = new FrameInput {
                 JumpDown = UnityEngine.Input.GetButtonDown("Jump"),
                 JumpUp = UnityEngine.Input.GetButtonUp("Jump"),
-                X = UnityEngine.Input.GetAxisRaw("Horizontal")
+                M = UnityEngine.Input.GetMouseButtonDown(0),
+                X = UnityEngine.Input.GetAxisRaw("Horizontal"),
             };
-            if (Input.JumpDown) {
+            if (InputSet.JumpDown) {
                 _lastJumpPressed = Time.time;
             }
         }
@@ -149,21 +153,24 @@ namespace TarodevController {
 
         #region Walk
 
-        [Header("WALKING")] [SerializeField] private float _acceleration = 90;
+        [Header("WALKING AND PULSE")] [SerializeField] private float _acceleration = 90;
         [SerializeField] private float _moveClamp = 13;
         [SerializeField] private float _deAcceleration = 60f;
         [SerializeField] private float _apexBonus = 2;
+        [SerializeField] private float _maxPulseForce = 30.0f;
+        [SerializeField] private float _pulseClamp = 50.0f;
+        [SerializeField] private float _pulseHeight = 5.0f;
 
         private void CalculateWalk() {
-            if (Input.X != 0) {
+            if (InputSet.X != 0) {
                 // Set horizontal move speed
-                _currentHorizontalSpeed += Input.X * _acceleration * Time.deltaTime;
+                _currentHorizontalSpeed += InputSet.X * _acceleration * Time.deltaTime;
 
                 // clamped by max frame movement
                 _currentHorizontalSpeed = Mathf.Clamp(_currentHorizontalSpeed, -_moveClamp, _moveClamp);
 
                 // Apply bonus at the apex of a jump
-                var apexBonus = Mathf.Sign(Input.X) * _apexBonus * _apexPoint;
+                var apexBonus = Mathf.Sign(InputSet.X) * _apexBonus * _apexPoint;
                 _currentHorizontalSpeed += apexBonus * Time.deltaTime;
             }
             else {
@@ -176,6 +183,39 @@ namespace TarodevController {
                 _currentHorizontalSpeed = 0;
             }
         }
+
+        //New pulse gun functionality added
+        private void CalculatePulseForce() {
+            if(InputSet.M){
+                Vector2 oldSpeed = new Vector2(_currentHorizontalSpeed, _currentVerticalSpeed);
+                Vector3 pz = Camera.main.ScreenToWorldPoint(Input.mousePosition); pz.z = 0;  //Finding coords clicked
+                Vector3 initialPulse = (transform.position - pz).normalized; //Finding unit direction vector
+
+                //Casting Ray to find actual pulse
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, -initialPulse, _pulseHeight);
+                if (hit.collider == null) {
+                    Debug.Log("No Pulse");
+                    return;
+                }
+                Debug.DrawRay(transform.position, -initialPulse * _pulseHeight, Color.green, 10, true);
+                
+                float percentDamp = (1-hit.distance/_pulseHeight); //smaller percentage = farther from platformer = less pulse force
+                Vector3 actual_pulse = initialPulse * _maxPulseForce * percentDamp;
+                _currentHorizontalSpeed = Mathf.Clamp(actual_pulse.x + _currentHorizontalSpeed, -_pulseClamp, _pulseClamp);
+                _currentVerticalSpeed = Mathf.Clamp(actual_pulse.y, -_pulseClamp, _pulseClamp);
+
+
+                //Stats
+                Debug.Log(String.Format(
+                    "Old Speed: {0}\tPulse Force: {1}\tNew Speed: {2}\tHit Distance: {3}",
+                    oldSpeed,
+                    new Vector2(actual_pulse.x, actual_pulse.y),
+                    new Vector2(_currentHorizontalSpeed, _currentVerticalSpeed),
+                    hit.distance
+                ));
+            } 
+        }
+
 
         #endregion
 
@@ -194,7 +234,6 @@ namespace TarodevController {
             else {
                 // Add downward force while ascending if we ended the jump early
                 var fallSpeed = _endedJumpEarly && _currentVerticalSpeed > 0 ? _fallSpeed * _jumpEndEarlyGravityModifier : _fallSpeed;
-
                 // Fall
                 _currentVerticalSpeed -= fallSpeed * Time.deltaTime;
 
@@ -232,7 +271,7 @@ namespace TarodevController {
 
         private void CalculateJump() {
             // Jump if: grounded or within coyote threshold || sufficient jump buffer
-            if (Input.JumpDown && CanUseCoyote || HasBufferedJump) {
+            if (InputSet.JumpDown && CanUseCoyote || HasBufferedJump) {
                 _currentVerticalSpeed = _jumpHeight;
                 _endedJumpEarly = false;
                 _coyoteUsable = false;
@@ -244,7 +283,7 @@ namespace TarodevController {
             }
 
             // End the jump early if button released
-            if (!_colDown && Input.JumpUp && !_endedJumpEarly && Velocity.y > 0) {
+            if (!_colDown && InputSet.JumpUp && !_endedJumpEarly && Velocity.y > 0) {
                 // _currentVerticalSpeed = 0;
                 _endedJumpEarly = true;
             }
@@ -254,7 +293,11 @@ namespace TarodevController {
             }
         }
 
+
         #endregion
+
+
+ 
 
         #region Move
 
@@ -269,12 +312,14 @@ namespace TarodevController {
             var move = RawMovement * Time.deltaTime;
             var furthestPoint = pos + move;
 
+            
             // check furthest movement. If nothing hit, move and don't do extra checks
             var hit = Physics2D.OverlapBox(furthestPoint, _characterBounds.size, 0, _groundLayer);
             if (!hit) {
                 transform.position += move;
                 return;
             }
+            
 
             // otherwise increment away from current pos; see what closest position we can move to
             var positionToMoveTo = transform.position;
