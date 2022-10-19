@@ -20,6 +20,6 @@ public class EndPoint : MonoBehaviour {
 		// If the player hits (or "triggers") the end point, we will change its color.
 		flagRenderer.color = reachedColor;
 		rodRenderer.color = reachedColor;
-		Debug.Log("Hit the flag!");
+		// Debug.Log("Hit the flag!");
 	}
 }
