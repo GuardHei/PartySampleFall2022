@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b823639e543694d890e5f8a77be1af, type: 3}
   m_Name: Player Stats
   m_EditorClassIdentifier: 
-  MaxSpeed: 14
+  MaxSpeed: 12
   Acceleration: 120
   GroundDeceleration: 60
   AirDeceleration: 30
