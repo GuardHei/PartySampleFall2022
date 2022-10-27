@@ -12,16 +12,19 @@ public class KaifPulseGunController : MonoBehaviour
     public float maxCooldown = 1;
     public float maxAngleSweep = 10;
     public PlayerForce forceType = PlayerForce.Burst;
+    public Color readyColor = Color.cyan;
 
     private Camera _cam;
     private Vector2 _pointer;
     private bool _canUse = true;
-    private GameObject _capsule;
-    private Color _capsuleColor = Color.blue;
+    private SpriteRenderer _renderer;
+    private Color _capsuleColor;
 
     private void Start() {
         _cam = Camera.main;
-        _capsule = GameObject.Find("PulseGun/Capsule");
+        _renderer = GetComponentInChildren<SpriteRenderer>();
+        _capsuleColor = readyColor;
+        _renderer.color = _capsuleColor;
     }
 
     private void Update() {
@@ -32,8 +35,7 @@ public class KaifPulseGunController : MonoBehaviour
         _pointer.Normalize();
         
         //Updates gun color every frame
-        SpriteRenderer sr = _capsule.GetComponent<SpriteRenderer>();
-        sr.color = _capsuleColor;
+        _renderer.color = _capsuleColor;
 
         // calculate degree and set rotation of pulse gun
         var degree = Mathf.Atan2(_pointer.y, _pointer.x) * Mathf.Rad2Deg;
@@ -45,7 +47,7 @@ public class KaifPulseGunController : MonoBehaviour
 
     private void HandleForce() {        
         //Cooldown Check
-        if (!_canUse) {return;}
+        if (!_canUse) return;
 
         // Change cone angle for wider sweep (ConeCast to check pulse)
         var hit = ConeCast(transform.position, _pointer, ampDistance, maxAngleSweep);
@@ -59,25 +61,23 @@ public class KaifPulseGunController : MonoBehaviour
         StartCoroutine(TimerRoutine());
     }
 
-    private IEnumerator TimerRoutine()
-    {
+    private IEnumerator TimerRoutine() {
         _canUse = false;
         _capsuleColor = Color.white;
         yield return new WaitForSeconds(maxCooldown);
         _canUse = true;
-        _capsuleColor = Color.blue;
+        _capsuleColor = readyColor;
     }
 
 
     //From a ray, will sweep out the given angle from both the left and the right to check for collisions
-    public static RaycastHit2D ConeCast(Vector2 origin, Vector2 direction, float maxDistance, float coneAngle)
-    {
-        //Gets angle from direction vector
+    public static RaycastHit2D ConeCast(Vector2 origin, Vector2 direction, float maxDistance, float coneAngle) {
+    //Gets angle from direction vector
         float initAngle =  Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Debug.Log(initAngle);
+        // Debug.Log(initAngle);
 
         //Makes a RayCast sweep from -coneAngle to +coneAngle with the direction vector in the center
-        for(int angleShift = 0; angleShift < coneAngle; angleShift++){
+        for (int angleShift = 0; angleShift < coneAngle; angleShift++){
             Vector2 leftDirection = new Vector2(
                 Mathf.Cos((initAngle-angleShift)*Mathf.Deg2Rad),
                 Mathf.Sin((initAngle-angleShift)*Mathf.Deg2Rad)
@@ -91,8 +91,8 @@ public class KaifPulseGunController : MonoBehaviour
             var hit2 = Physics2D.Raycast(origin, rightDirection, maxDistance);
             Debug.DrawRay(origin, rightDirection, Color.green,1);
             Debug.DrawRay(origin, leftDirection, Color.blue,1);
-            if (hit1) {return hit1;}
-            if (hit2) {return hit2;}
+            if (hit1) return hit1;
+            if (hit2) return hit2;
         }
         return new RaycastHit2D();
     }

@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 namespace TarodevController {
@@ -64,6 +65,7 @@ namespace TarodevController {
             _input = GetComponent<PlayerInput>();
             _cachedTriggerSetting = Physics2D.queriesHitTriggers;
             Physics2D.queriesStartInColliders = false;
+            Application.targetFrameRate = 60;
         }
 
         protected virtual void Update() {
@@ -79,6 +81,14 @@ namespace TarodevController {
             }
 
             if (_frameInput.DashDown && _stats.AllowDash) _dashToConsume = true;
+
+            if (UnityEngine.Input.GetKey(KeyCode.Q)) {
+#if UNITY_EDITOR
+                EditorApplication.ExitPlaymode();
+#else
+                Application.Quit();
+#endif
+            }
         }
 
         protected virtual void FixedUpdate() {
