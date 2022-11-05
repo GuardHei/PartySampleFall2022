@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 373885999}
-  - component: {fileID: 6936741173794553606}
+  - component: {fileID: 5705091170261267197}
   m_Layer: 2
   m_Name: PulseGun
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 4852075135195195479}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6936741173794553606
+--- !u!114 &5705091170261267197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 373885998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec8310148a12434585b8e2bbe14af38, type: 3}
+  m_Script: {fileID: 11500000, guid: c21f07b7180c9114692f23fd02f9403a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5081724194370275384}
@@ -52,6 +52,11 @@ MonoBehaviour:
   maxAngleSweep: 10
   forceType: 0
   readyColor: {r: 0, g: 1, b: 1, a: 1}
+  hitVisual: {fileID: 4070795519395560754, guid: af5819030a171c542ae6bc11d60188bd,
+    type: 3}
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &1378036241
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +177,7 @@ Transform:
   - {fileID: 5081724196058445490}
   - {fileID: 373885999}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5081724194370275384
 MonoBehaviour:
