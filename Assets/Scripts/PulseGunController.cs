@@ -25,6 +25,7 @@ public class PulseGunController : MonoBehaviour
     private RaycastHit2D _contactPoint;
 
     private void Start() {
+        // note: this uses the main camera
         _cam = Camera.main;
         _renderer = GetComponentInChildren<SpriteRenderer>();
         _capsuleColor = readyColor;
