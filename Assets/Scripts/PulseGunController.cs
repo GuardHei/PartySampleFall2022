@@ -5,8 +5,7 @@ using TarodevController;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class PulseGunController : MonoBehaviour
-{
+public class PulseGunController : MonoBehaviour {
     public PlayerController player;
     public float ampDistance = 5; // max distance to determine amplifying the force
     public float force = 5;
@@ -16,6 +15,9 @@ public class PulseGunController : MonoBehaviour
     public Color readyColor = Color.cyan;
     public GameObject hitVisual;
     public LayerMask detectionLayer;
+    public bool detectTriggers;
+    public int smokeParticleNum = 50;
+    public ParticleSystem smokeFx;
 
     private Camera _cam;
     private Vector2 _pointer;
@@ -71,6 +73,8 @@ public class PulseGunController : MonoBehaviour
     private void HandleForce() {        
         // cooldown Check
         if (!_canUse) return;
+        
+        if (smokeFx) smokeFx.Emit(smokeParticleNum);
 
         // apply velocity if contact point exists
         if (_contactPoint)
@@ -95,6 +99,9 @@ public class PulseGunController : MonoBehaviour
         // gets angle from direction vector
         float initAngle =  Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
+        var saveSetting = Physics2D.queriesHitTriggers;
+        Physics2D.queriesHitTriggers = detectTriggers;
+
         // makes a RayCast sweep from -coneAngle to +coneAngle with the direction vector in the center
         for (int angleShift = 0; angleShift < coneAngle; angleShift++){
             Vector2 leftDirection = new Vector2(
@@ -109,9 +116,19 @@ public class PulseGunController : MonoBehaviour
             var origin = transform.position;
             var hit1 = Physics2D.Raycast(origin, leftDirection, maxDistance, detectionLayer);
             var hit2 = Physics2D.Raycast(origin, rightDirection, maxDistance, detectionLayer);
-            if (hit1) return hit1;
-            if (hit2) return hit2;
+            if (hit1) {
+                Physics2D.queriesHitTriggers = saveSetting;
+                return hit1;
+            }
+
+            if (hit2) {
+                Physics2D.queriesHitTriggers = saveSetting;
+                return hit2;
+            }
         }
+
+        Physics2D.queriesHitTriggers = saveSetting;
+        
         return new RaycastHit2D();
     }
     
