@@ -12,12 +12,14 @@ public class PulseGunController : MonoBehaviour {
     public float maxCooldown = 1;
     public float maxAngleSweep = 10;
     public PlayerForce forceType = PlayerForce.Burst;
-    public Color readyColor = Color.cyan;
+    public Gradient minToMaxGradient;
     public GameObject hitVisual;
     public LayerMask detectionLayer;
     public bool detectTriggers;
     public int smokeParticleNum = 50;
     public ParticleSystem smokeFx;
+    public Sprite activeSprite;
+    public Sprite inactiveSprite;
 
     private Camera _cam;
     private Vector2 _pointer;
@@ -30,8 +32,7 @@ public class PulseGunController : MonoBehaviour {
         // note: this uses the main camera
         _cam = Camera.main;
         _renderer = GetComponentInChildren<SpriteRenderer>();
-        _capsuleColor = readyColor;
-        _renderer.color = _capsuleColor;
+        _renderer.sprite = activeSprite;
         
         // prepare visual
         hitVisual = Instantiate(hitVisual);
@@ -85,12 +86,10 @@ public class PulseGunController : MonoBehaviour {
 
     private IEnumerator TimerRoutine() {
         _canUse = false;
-        _capsuleColor = Color.white;
-        _renderer.color = _capsuleColor;
+        _renderer.sprite = inactiveSprite;
         yield return new WaitForSeconds(maxCooldown);
         _canUse = true;
-        _capsuleColor = readyColor;
-        _renderer.color = _capsuleColor;
+        _renderer.sprite = activeSprite;
     }
 
 
