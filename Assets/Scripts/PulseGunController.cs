@@ -13,23 +13,29 @@ public class PulseGunController : MonoBehaviour
     public float maxCooldown = 1;
     public float maxAngleSweep = 10;
     public PlayerForce forceType = PlayerForce.Burst;
-    public Color readyColor = Color.cyan;
+    public Gradient minToMaxGradient;
     public GameObject hitVisual;
     public LayerMask detectionLayer;
+<<<<<<< Updated upstream
+=======
+    public bool detectTriggers;
+    public int smokeParticleNum = 50;
+    public ParticleSystem smokeFx;
+    public Sprite activeSprite;
+    public Sprite inactiveSprite;
+>>>>>>> Stashed changes
 
     private Camera _cam;
     private Vector2 _pointer;
     private bool _canUse = true;
     private SpriteRenderer _renderer;
-    private Color _capsuleColor;
     private RaycastHit2D _contactPoint;
 
     private void Start() {
         // note: this uses the main camera
         _cam = Camera.main;
         _renderer = GetComponentInChildren<SpriteRenderer>();
-        _capsuleColor = readyColor;
-        _renderer.color = _capsuleColor;
+        _renderer.sprite = activeSprite;
         
         // prepare visual
         hitVisual = Instantiate(hitVisual);
@@ -56,7 +62,7 @@ public class PulseGunController : MonoBehaviour
             var point = _contactPoint.point;
             var dist = Vector2.Distance(point, transform.position);
             hitVisual.transform.position = point;
-            hitVisual.GetComponent<SpriteRenderer>().color = Color.HSVToRGB(dist/ampDistance*0.5f, 0.8f, 0.8f);
+            hitVisual.GetComponent<SpriteRenderer>().color = minToMaxGradient.Evaluate(dist / ampDistance);
             hitVisual.SetActive(true);
         }
         else
@@ -81,12 +87,10 @@ public class PulseGunController : MonoBehaviour
 
     private IEnumerator TimerRoutine() {
         _canUse = false;
-        _capsuleColor = Color.white;
-        _renderer.color = _capsuleColor;
+        _renderer.sprite = inactiveSprite;
         yield return new WaitForSeconds(maxCooldown);
         _canUse = true;
-        _capsuleColor = readyColor;
-        _renderer.color = _capsuleColor;
+        _renderer.sprite = activeSprite;
     }
 
 
