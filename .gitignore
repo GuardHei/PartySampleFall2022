@@ -73,4 +73,5 @@ crashlytics-build.properties
 Assets/[Tt]ests/
 
 Assets/Shaders/.vscode/settings.json
-*.dwlt
+ProjectSettings/RiderScriptEditorPersistedState.asset
+ProjectSettings/RiderScriptEditorPersistedState.asset

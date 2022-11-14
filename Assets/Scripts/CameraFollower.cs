@@ -35,8 +35,8 @@ public class CameraFollower : MonoBehaviour {
 		var playerPosition = player.transform.position;
 		actualOffset = offset;
 		lastXFlip = xFlip;
-		xFlip = player.RawMovement.x < 0;
-		if (player.RawMovement.x == 0f) xFlip = lastXFlip;
+		xFlip = player.Speed.x < 0;
+		if (player.Speed.x == 0f) xFlip = lastXFlip;
 		if (xFlip) actualOffset.x = -actualOffset.x;
 		var targetPosition = playerPosition + actualOffset;
 		var position = transform.position;
@@ -45,4 +45,6 @@ public class CameraFollower : MonoBehaviour {
 		position = new Vector3(positionX, positionY, offset.z); // We should not modify the z axis of the camera.
 		transform.position = position;
 	}
+	
+	
 }

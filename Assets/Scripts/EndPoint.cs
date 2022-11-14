@@ -1,12 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class EndPoint : MonoBehaviour {
 
 	public Color reachedColor;
-	
-	[Header("Graphics Settings")]
-	public SpriteRenderer flagRenderer;
-	public SpriteRenderer rodRenderer;
+
+	private SpriteRenderer[] _renderers;
+
+	private void Awake() {
+		_renderers = GetComponentsInChildren<SpriteRenderer>();
+	}
 
 	/**
 	 * OnTriggerEnter2D() function will be called (automatically) by Unity engine when the current game object
@@ -17,9 +20,9 @@ public class EndPoint : MonoBehaviour {
 	 * not trigger this function call.
 	 */
 	public void OnTriggerEnter2D(Collider2D other) {
+		if (!other.CompareTag("Player")) return;
 		// If the player hits (or "triggers") the end point, we will change its color.
-		flagRenderer.color = reachedColor;
-		rodRenderer.color = reachedColor;
-		Debug.Log("Hit the flag!");
+		foreach (var renderer in _renderers) renderer.color = reachedColor;
+		// Debug.Log("Hit the flag!");
 	}
 }
