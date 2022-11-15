@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Deadzone : MonoBehaviour {
 
@@ -11,7 +12,7 @@ public class Deadzone : MonoBehaviour {
 	 * a trigger. Rigidbody2D is not required.
 	 */	
 	public void OnTriggerEnter2D(Collider2D other) {
-		// If the player hits (or "triggers") the deadzone, we will teleport the player back to the start point.
-		other.transform.position = new Vector3(startPoint.position.x, startPoint.position.y, other.transform.position.z);
+		if (!other.CompareTag("Player")) return;
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
 	}
 }
