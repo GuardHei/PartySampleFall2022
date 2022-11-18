@@ -20,10 +20,9 @@ public class NEnemyAI3 : MonoBehaviour
     public bool seen = false;
     public LayerMask wallPlatformColliderMask;
     public float wallDistance = 0.8f;
-    public bool flip = true;
+    public bool flip = false;
     public bool disabled = false;
     public float disableTime = 0;
-    public float testtime = 0;
     
     
     // Start is called before the first frame update
