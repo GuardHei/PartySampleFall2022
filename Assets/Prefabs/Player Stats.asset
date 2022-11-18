@@ -49,7 +49,7 @@ MonoBehaviour:
   DashEndHorizontalMultiplier: 0.25
   PlayerLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 4
   GrounderDistance: 0.1
   WallDetectorSize: {x: 0.75, y: 1.25}
   ExternalVelocityDecay: 10

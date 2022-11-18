@@ -62,6 +62,7 @@ namespace Editor {
             if (c == null) return;
 
             var scale = go.transform.localScale;
+            scale = new Vector3(Mathf.Abs(scale.x), Mathf.Abs(scale.y), Mathf.Abs(scale.z));
             r.sprite = scale.x >= scale.y ? horizontalPlatformSprite : verticalPlatformSprite;
             r.color = tint;
             r.drawMode = SpriteDrawMode.Tiled;

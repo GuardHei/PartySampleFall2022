@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56bdb6982179d4d068d2ff7045a85de4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reachedColor: {r: 0.11399722, g: 1, b: 0, a: 1}
+  reachedColor: {r: 0.11399722, g: 1, b: 0, a: 0}
 --- !u!58 &2335863607115416783
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 373885999}
   - component: {fileID: 5705091170261267197}
+  - component: {fileID: 2136745291}
   m_Layer: 2
   m_Name: PulseGun
   m_TagString: Untagged
@@ -40,7 +41,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 373885998}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c21f07b7180c9114692f23fd02f9403a, type: 3}
   m_Name: 
@@ -84,7 +85,65 @@ MonoBehaviour:
     type: 3}
   detectionLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
+  detectTriggers: 1
+  smokeParticleNum: 80
+  smokeFx: {fileID: 442888669}
+  activeSprite: {fileID: 21300000, guid: c93e644fe3d3c3942adbbfbabb86e842, type: 3}
+  inactiveSprite: {fileID: 21300000, guid: 6bddaaf0adc96424b815f3f0ef573421, type: 3}
+--- !u!114 &2136745291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373885998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec8310148a12434585b8e2bbe14af38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5081724194370275384}
+  ampDistance: 4
+  force: 21
+  maxCooldown: 0.5
+  maxAngleSweep: 10
+  obstacleLayer: 7
+  forceType: 0
+  minToMaxGradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 0, b: 0, a: 1}
+    key1: {r: 0.8301887, g: 0.5848556, b: 0.18326804, a: 1}
+    key2: {r: 0.7568277, g: 0.37647057, b: 0.7921569, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 30647
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  hitVisual: {fileID: 4070795519395560754, guid: af5819030a171c542ae6bc11d60188bd,
+    type: 3}
+  detectionLayer:
+    serializedVersion: 2
+    m_Bits: 192
   detectTriggers: 1
   smokeParticleNum: 80
   smokeFx: {fileID: 442888669}
@@ -210,7 +269,7 @@ Transform:
   - {fileID: 5081724196058445490}
   - {fileID: 373885999}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5081724194370275384
 MonoBehaviour:
