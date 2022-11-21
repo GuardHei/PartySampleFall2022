@@ -11,9 +11,12 @@ public class KaifPulseGunController : MonoBehaviour
     public PlayerController player;
     public float ampDistance = 5; // max distance to determine amplifying the force
     public float force = 5;
+    public float pushBoxForce = 5;
+    public float pushNPCForce = 5;
+    public float NPCDisableTime = .5f;
     public float maxCooldown = 1;
     public float maxAngleSweep = 10;
-    public int obstacleLayer;
+    public LayerMask obstacleLayers;
     public PlayerForce forceType = PlayerForce.Burst;
     public Gradient minToMaxGradient;
     public GameObject hitVisual;
@@ -104,8 +107,16 @@ public class KaifPulseGunController : MonoBehaviour
 
     //checks if the hit hit any obstacles and applies force relative to the shot
     private void applyForceToObject(float dist){
-        if(_contactPoint.collider && _contactPoint.collider.gameObject.layer == obstacleLayer){
-            _contactPoint.rigidbody.AddForce(Math.Max(0,force*75*(1-dist/ampDistance))*_pointer);
+        NEnemyAI3 ai;
+        float whichPushForce = pushBoxForce;
+        if(_contactPoint.collider && ((1 << _contactPoint.collider.gameObject.layer)| obstacleLayers) == obstacleLayers){
+            //Checks if an Enemy NPC is hit
+            if (_contactPoint.collider.gameObject.TryGetComponent<NEnemyAI3>(out ai)){
+                ai.DisableAI(NPCDisableTime);
+                whichPushForce = pushNPCForce;
+            }
+            //Applies the push (on a box or NPC)
+            _contactPoint.rigidbody.AddForce(Math.Max(0,force*whichPushForce*(1-dist/ampDistance))*_pointer);
         }
     }
 

@@ -106,9 +106,14 @@ MonoBehaviour:
   player: {fileID: 5081724194370275384}
   ampDistance: 4
   force: 21
+  pushBoxForce: 2000
+  pushNPCForce: 40
+  NPCDisableTime: 0.5
   maxCooldown: 0.5
   maxAngleSweep: 10
-  obstacleLayer: 7
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 128
   forceType: 0
   minToMaxGradient:
     serializedVersion: 2
