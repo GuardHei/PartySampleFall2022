@@ -107,7 +107,7 @@ MonoBehaviour:
   ampDistance: 4
   force: 21
   pushBoxForce: 2000
-  pushNPCForce: 40
+  pushNPCForce: 80
   NPCDisableTime: 0.5
   maxCooldown: 0.5
   maxAngleSweep: 10
