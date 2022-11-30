@@ -49,8 +49,10 @@ public class NEnemyAI3 : MonoBehaviour
 
         Vector2 r = transform.position;
         Vector2 l = transform.position;
-        difference = transform.position - playerObj.transform.position;
-        distance = difference.magnitude;
+        if (playerObj != null) {
+            difference = transform.position - playerObj.transform.position;
+            distance = difference.magnitude;
+        }
 
         r.x = r.x + extraDistance;
         l.x = l.x - extraDistance;
@@ -63,10 +65,12 @@ public class NEnemyAI3 : MonoBehaviour
         rb.rotation = 0;
         float currSpeed = speed;
         
-        if (distance <= sight) {
-            RaycastHit2D look = Physics2D.Linecast (transform.position, playerObj.transform.position, wallPlatformColliderMask);
-            if (!look.collider || look.collider == playerObj.GetComponent<Collider2D>()) {
-                seen = true;
+        if (playerObj != null) {
+            if (distance <= sight) {
+                RaycastHit2D look = Physics2D.Linecast (transform.position, playerObj.transform.position, wallPlatformColliderMask);
+                if (!look.collider || look.collider == playerObj.GetComponent<Collider2D>()) {
+                    seen = true;
+                }
             }
         }
 
