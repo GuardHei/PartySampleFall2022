@@ -12,14 +12,22 @@ public class SfxManager : MonoBehaviour
 
     [SerializeField] GameObject[] sfxPlayerPrefabs;
     [SerializeField] string[] sfxPlayerNames;
-    public bool global = true;
+    public AudioClip bgm;
     public static SfxManager Instance;
-
 
     // Start is called before the first frame update
     void Start() {
-        if (global && Instance != null) return;
-        if (global) DontDestroyOnLoad(gameObject);
+        if (Instance != null) {
+            var src = Instance.GetComponent<AudioSource>();
+            if (!bgm) src.clip = null;
+            else if (src.clip && src.clip.name != bgm.name) src.clip = bgm;
+            Destroy(gameObject);
+            return;
+        }
+
+        if (bgm) GetComponent<AudioSource>().clip = bgm;
+        
+        DontDestroyOnLoad(gameObject);
 
         Instance = this;
         sfxPlayerNames = new string[sfxPlayerPrefabs.Length];
