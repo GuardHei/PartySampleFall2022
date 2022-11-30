@@ -12,12 +12,15 @@ public class SfxManager : MonoBehaviour
 
     [SerializeField] GameObject[] sfxPlayerPrefabs;
     [SerializeField] string[] sfxPlayerNames;
+    public bool global = true;
     public static SfxManager Instance;
 
-    
+
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
+        if (global && Instance != null) return;
+        if (global) DontDestroyOnLoad(gameObject);
+
         Instance = this;
         sfxPlayerNames = new string[sfxPlayerPrefabs.Length];
         for(int i=0; i < sfxPlayerPrefabs.Length; i++)//stores all prefab names based on given sfxPlayerFrefabs array
@@ -33,7 +36,9 @@ public class SfxManager : MonoBehaviour
         {
             GameObject sfxObject = (GameObject)Instantiate(sfxPlayerPrefabs[index], pos, Quaternion.identity); //initiate said prefab
             SfxPlayer sfxPlayer = sfxObject.GetComponent<SfxPlayer>(); //access its script //run scrip's Play() method
-            Destroy(sfxPlayer, sfxPlayer.Play()+0.01f);
+            DontDestroyOnLoad(sfxObject);
+            Destroy(sfxObject, sfxPlayer.Play() + .01f);
+            Debug.Log("Played " + name);
         }
         else
         {

@@ -7,6 +7,8 @@ public class PlayerAnimator : MonoBehaviour {
     public PlayerController controller;
     public Animator animator;
     public SpriteRenderer renderer;
+    public string launchSfx = "RototoSfx-Launch";
+    public string landSfx = "RototoSfx-Land";
 
     private int _onGroundId = Animator.StringToHash("OnGround");
     private int _movingId = Animator.StringToHash("Moving");
@@ -30,5 +32,9 @@ public class PlayerAnimator : MonoBehaviour {
 
     private void SetOnGroundState(bool onGround, float verticalSpeed) {
         animator.SetBool(_onGroundId, onGround);
+        if (SfxManager.Instance) {
+            var sfx = onGround ? landSfx : launchSfx;
+            if (!string.IsNullOrWhiteSpace(sfx)) SfxManager.Instance.PlaySfx(sfx, transform.position);
+        }
     }
 }

@@ -26,6 +26,7 @@ public class KaifPulseGunController : MonoBehaviour
     public ParticleSystem smokeFx;
     public Sprite activeSprite;
     public Sprite inactiveSprite;
+    public string shootSfx = "GunSfx";
 
     private Camera _cam;
     private Vector2 _pointer;
@@ -86,6 +87,8 @@ public class KaifPulseGunController : MonoBehaviour
         if (!_canUse) return;
         
         if (smokeFx) smokeFx.Emit(smokeParticleNum);
+        
+        if (!string.IsNullOrWhiteSpace(shootSfx) && SfxManager.Instance) SfxManager.Instance.PlaySfx(shootSfx, transform.position);
 
         // apply velocity if contact point exists
         if (_contactPoint){

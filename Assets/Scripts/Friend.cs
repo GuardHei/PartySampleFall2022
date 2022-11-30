@@ -18,6 +18,8 @@ public class Friend : MonoBehaviour
     private string _id;
     private bool _rescued = false;
 
+    public string rescueSfx = "FriendSfx";
+
     GameObject LoadUI()
     {
         var uiPrefab = Resources.Load("FriendUI");
@@ -63,6 +65,8 @@ public class Friend : MonoBehaviour
         FriendCount++;
         _rescued = true;
         Friends[_id] = true;
+        
+        if (!string.IsNullOrWhiteSpace(rescueSfx) && SfxManager.Instance) SfxManager.Instance.PlaySfx(rescueSfx, transform.position);
         
         _ui.GetComponent<FriendUIManager>().UpdateFriendCount(FriendCount);
         Destroy(gameObject);

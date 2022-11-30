@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Deadzone : MonoBehaviour {
+	
+	public string guardDeathSfx = "GuardSfx-Death";
+	public string rototoDeathSfx = "RototoSfx-Death";
 
 	/**
 	 * OnTriggerEnter2D() function will be called (automatically) by Unity engine when the current game object
@@ -13,10 +16,12 @@ public class Deadzone : MonoBehaviour {
 	public void OnTriggerEnter2D(Collider2D other) {
 		if (other.gameObject.GetComponent<NEnemyAI3>())
 		{
+			if (!string.IsNullOrWhiteSpace(guardDeathSfx) && SfxManager.Instance) SfxManager.Instance.PlaySfx(guardDeathSfx, other.transform.position);
 			Destroy(other.gameObject);
 			return;
 		}
 		if (!other.CompareTag("Player")) return;
+		if (!string.IsNullOrWhiteSpace(rototoDeathSfx) && SfxManager.Instance) SfxManager.Instance.PlaySfx(rototoDeathSfx, other.transform.position);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
 	}
 }
