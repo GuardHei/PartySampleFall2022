@@ -66,6 +66,13 @@ public class ShootingAI : MonoBehaviour
             if (!shoot) {
                 AI ();
             } else {
+                if (difference.x < 0) {
+                    _rightDir = true;
+                    renderer.flipX = false;
+                } else if (difference.x > 0) {
+                    _rightDir = false;
+                    renderer.flipX = true;
+                }
                 if (!recoil) {
                     Shooting ();
                 }

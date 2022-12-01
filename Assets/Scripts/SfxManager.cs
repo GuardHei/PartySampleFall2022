@@ -46,7 +46,7 @@ public class SfxManager : MonoBehaviour
             SfxPlayer sfxPlayer = sfxObject.GetComponent<SfxPlayer>(); //access its script //run scrip's Play() method
             DontDestroyOnLoad(sfxObject);
             Destroy(sfxObject, sfxPlayer.Play() + .01f);
-            Debug.Log("Played " + name);
+            // Debug.Log("Played " + name);
         }
         else
         {

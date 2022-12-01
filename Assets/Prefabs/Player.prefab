@@ -113,7 +113,7 @@ MonoBehaviour:
   maxAngleSweep: 10
   obstacleLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   forceType: 0
   minToMaxGradient:
     serializedVersion: 2
@@ -148,7 +148,7 @@ MonoBehaviour:
     type: 3}
   detectionLayer:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   detectTriggers: 1
   smokeParticleNum: 80
   smokeFx: {fileID: 442888669}

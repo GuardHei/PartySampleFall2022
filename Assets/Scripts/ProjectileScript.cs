@@ -15,9 +15,12 @@ public class ProjectileScript : MonoBehaviour
     
     public string rototoDeathSfx = "RototoSfx-Death";
 
+    public int characterLayer;
+
     // Start is called before the first frame update
     void Start()
     {
+        characterLayer = LayerMask.NameToLayer("Character");
         rb = GetComponent<Rigidbody2D>();
         if (rb.velocity.magnitude == 0) {
             rb.constraints = RigidbodyConstraints2D.FreezePosition;
@@ -26,6 +29,7 @@ public class ProjectileScript : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.gameObject.layer == characterLayer) return;
         if (!found) {
             name = collider.gameObject.name;
             found = true;
