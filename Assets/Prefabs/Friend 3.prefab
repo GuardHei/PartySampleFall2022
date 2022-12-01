@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 264277600495041581}
   - component: {fileID: 264277600495041576}
   - component: {fileID: 577427586740201487}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Friend 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4192235908538748300}
   - component: {fileID: 4192235908538748301}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

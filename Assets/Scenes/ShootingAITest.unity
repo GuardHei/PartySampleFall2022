@@ -418,7 +418,7 @@ PrefabInstance:
     - target: {fileID: 4984653404369846445, guid: e14df7a41e4f54db5ae801114872da6f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1130,6 +1130,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scientist
+      objectReference: {fileID: 0}
+    - target: {fileID: 7966275511864107374, guid: 356b1cb5ac2f74503bfe73f5543dfe88,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

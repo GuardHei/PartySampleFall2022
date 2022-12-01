@@ -94,9 +94,9 @@ public class ShootingAI : MonoBehaviour
             float sqrtPart = Mathf.Sqrt (b * b - 4.0f * a * (transform.position.y - playerObj.transform.position.y - a));
             float ans1 = Mathf.Atan((-b + sqrtPart) / (-2.0f * a));
             float ans2 = Mathf.Atan((-b - sqrtPart) / (-2.0f * a));
-            Debug.Log("s: " + sqrtPart);
-            Debug.Log("1: " + ans1);
-            Debug.Log("2: " + ans2);
+            // Debug.Log("s: " + sqrtPart);
+            // Debug.Log("1: " + ans1);
+            // Debug.Log("2: " + ans2);
             if (playerObj.transform.position.x > transform.position.x) {
                 launchVelocity = new Vector2 (Mathf.Cos(ans2) * proportion * total_velocity, Mathf.Sin(ans2) * proportion * total_velocity);
             } else {

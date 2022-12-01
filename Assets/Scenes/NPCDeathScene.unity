@@ -898,6 +898,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: H Platform (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5765789064643053665, guid: 8e893800a3ee042b6a22c7d696f08c71,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5765789064643053668, guid: 8e893800a3ee042b6a22c7d696f08c71,
         type: 3}
       propertyPath: m_RootOrder
@@ -1182,6 +1187,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: H Platform (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765789064643053665, guid: 8e893800a3ee042b6a22c7d696f08c71,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5765789064643053668, guid: 8e893800a3ee042b6a22c7d696f08c71,
         type: 3}

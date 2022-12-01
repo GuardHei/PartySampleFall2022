@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7966275511864107371}
   - component: {fileID: 7966275511864107369}
-  - component: {fileID: 7966275511864107364}
   - component: {fileID: 8687336732826573080}
   - component: {fileID: 7966275511864107365}
   - component: {fileID: 7966275511864107366}
@@ -53,45 +52,13 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &7966275511864107364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7966275511864107374}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03557679128fa43438bae91f4bb721ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  right: {x: 0, y: 0}
-  left: {x: 0, y: 0}
-  down: {x: 0, y: 0}
-  renderer: {fileID: 0}
-  extraDistance: 0.5
-  castDistance: 2
-  speed: 3
-  distance: 0
-  sight: 10
-  seen: 0
-  wallPlatformColliderMask:
-    serializedVersion: 2
-    m_Bits: 193
-  wallDistance: 0.8
-  flip: 0
-  disabled: 0
-  disableTime: 0
-  alertSfx: GuardSfx-Alert
-  dead: 0
 --- !u!114 &8687336732826573080
 MonoBehaviour:
   m_ObjectHideFlags: 0
