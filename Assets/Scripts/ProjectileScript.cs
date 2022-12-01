@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ProjectileScript : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ProjectileScript : MonoBehaviour
     private bool found = false;
     public float time = 10;
     public float actualTime;
+    
+    public string rototoDeathSfx = "RototoSfx-Death";
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +30,12 @@ public class ProjectileScript : MonoBehaviour
             name = collider.gameObject.name;
             found = true;
         }
+        if (collider.CompareTag("Player")) {
+            if (!string.IsNullOrWhiteSpace(rototoDeathSfx) && SfxManager.Instance) SfxManager.Instance.PlaySfx(rototoDeathSfx, collider.transform.position);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
         if (name != collider.gameObject.name) {
+            Debug.Log("Projectile destroyed");
             Destroy (this.gameObject);
         }
     }

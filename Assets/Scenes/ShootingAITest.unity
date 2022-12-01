@@ -395,22 +395,24 @@ MonoBehaviour:
   seen: 0
   wallPlatformColliderMask:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 193
   wallDistance: 0.8
   flip: 1
   disabled: 0
   disableTime: 0
   testtime: 0
   shoot: 0
-  projectile: {fileID: 2335863607115416779, guid: 2119d860ab0ff4e49ac0a1ac92f2329c,
+  projectile: {fileID: 5869081266844445099, guid: 75fc783b5704d4f3e96256b88aaf4c9a,
     type: 3}
   recoilTime: 2
-  recoil: 0
+  recoil: 1
   actualRecoilTime: 0
-  proportion: 10
+  proportion: 210
   launchVelocity: {x: 0, y: 0}
   not_set: 0
-  total_velocity: 30
+  total_velocity: 2
+  alertSfx: GuardSfx-Alert
+  dead: 0
   maxShootPercent: 75
   minShootPercent: 25
 --- !u!1 &975873337
@@ -662,7 +664,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495150095}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1495150097
 Camera:
   m_ObjectHideFlags: 0
@@ -732,6 +734,11 @@ PrefabInstance:
     - target: {fileID: 4852075135195195478, guid: 46fb6196932024131acc138d8f1c4075,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852075135195195478, guid: 46fb6196932024131acc138d8f1c4075,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4852075135195195479, guid: 46fb6196932024131acc138d8f1c4075,

@@ -154,6 +154,7 @@ MonoBehaviour:
   smokeFx: {fileID: 442888669}
   activeSprite: {fileID: 21300000, guid: c93e644fe3d3c3942adbbfbabb86e842, type: 3}
   inactiveSprite: {fileID: 21300000, guid: 6bddaaf0adc96424b815f3f0ef573421, type: 3}
+  shootSfx: GunSfx
 --- !u!1 &1378036241
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +253,7 @@ GameObject:
   - component: {fileID: 5081724194370275390}
   - component: {fileID: 8721524334358914717}
   - component: {fileID: 5081724194370275386}
+  - component: {fileID: 7183881057842823335}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -340,6 +342,14 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
+--- !u!81 &7183881057842823335
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4852075135195195478}
+  m_Enabled: 1
 --- !u!1 &5081724195609730594
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,6 +615,8 @@ MonoBehaviour:
   controller: {fileID: 5081724194370275384}
   animator: {fileID: 1855284880}
   renderer: {fileID: 0}
+  launchSfx: RototoSfx-Launch
+  landSfx: RototoSfx-Land
 --- !u!1001 &3300964714864738214
 PrefabInstance:
   m_ObjectHideFlags: 0

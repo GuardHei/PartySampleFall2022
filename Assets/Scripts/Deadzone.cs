@@ -14,12 +14,20 @@ public class Deadzone : MonoBehaviour {
 	 * a trigger. Rigidbody2D is not required.
 	 */	
 	public void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject.GetComponent<NEnemyAI3>() || other.gameObject.GetComponent<ShootingAI>())
-		{
-			if (!string.IsNullOrWhiteSpace(guardDeathSfx) && SfxManager.Instance) SfxManager.Instance.PlaySfx(guardDeathSfx, other.transform.position);
+		if (other.gameObject.TryGetComponent(out NEnemyAI3 ai3)) {
+			if (!ai3.dead && !string.IsNullOrWhiteSpace(guardDeathSfx) && SfxManager.Instance) SfxManager.Instance.PlaySfx(guardDeathSfx, other.transform.position);
+			ai3.dead = true;
 			Destroy(other.gameObject);
 			return;
 		}
+		
+		if (other.gameObject.TryGetComponent(out ShootingAI sai)) {
+			if (!sai.dead && !string.IsNullOrWhiteSpace(guardDeathSfx) && SfxManager.Instance) SfxManager.Instance.PlaySfx(guardDeathSfx, other.transform.position);
+			sai.dead = true;
+			Destroy(other.gameObject);
+			return;
+		}
+		
 		if (!other.CompareTag("Player")) return;
 		if (!string.IsNullOrWhiteSpace(rototoDeathSfx) && SfxManager.Instance) SfxManager.Instance.PlaySfx(rototoDeathSfx, other.transform.position);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 

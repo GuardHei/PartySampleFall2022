@@ -32,4 +32,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Horizontal 2.unity
     guid: 860bcc3d4017c41f4b2c1833e7cd64ab
+  - enabled: 1
+    path: Assets/Scenes/Horizontal 3.unity
+    guid: c93718f7b8e984dd98c9ec2824428ca9
+  - enabled: 1
+    path: Assets/Scenes/NPCDeathScene.unity
+    guid: 8875555fbf82f2c4197456903262a7d4
+  - enabled: 1
+    path: Assets/Scenes/ShootingAITest.unity
+    guid: cd8354597853a4e0ab580e2832265f94
   m_configObjects: {}

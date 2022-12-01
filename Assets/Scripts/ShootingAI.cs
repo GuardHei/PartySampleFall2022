@@ -38,6 +38,7 @@ public class ShootingAI : MonoBehaviour
     public float total_velocity;
     
     public string alertSfx = "GuardSfx-Alert";
+    public bool dead = false;
 
     public float maxShootPercent = 100.0f;
     public float minShootPercent = 0.0f;

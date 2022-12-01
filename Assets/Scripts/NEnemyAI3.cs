@@ -24,6 +24,7 @@ public class NEnemyAI3 : MonoBehaviour
     public bool disabled = false;
     public float disableTime = 0;
     public string alertSfx = "GuardSfx-Alert";
+    public bool dead;
 
     // Start is called before the first frame update
     void Start()
