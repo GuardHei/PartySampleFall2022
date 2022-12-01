@@ -23,8 +23,8 @@ public class NEnemyAI3 : MonoBehaviour
     public bool flip = false;
     public bool disabled = false;
     public float disableTime = 0;
-    
-    
+    public string alertSfx = "GuardSfx-Alert";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +45,7 @@ public class NEnemyAI3 : MonoBehaviour
     }
 
     void AI () {
+        var seenBefore = seen;
         seen = false;
 
         Vector2 r = transform.position;
@@ -79,23 +80,28 @@ public class NEnemyAI3 : MonoBehaviour
         } else if (!hitl.collider || wallLeft.collider != null) {
             _rightDir = true;
         }
+        
+        var speedY = rb.velocity.y;
 
         if (seen) {
+            if (!seenBefore) {
+                if (!string.IsNullOrWhiteSpace(alertSfx) && SfxManager.Instance) SfxManager.Instance.PlaySfx(alertSfx, transform.position);
+            }
             if (transform.position.x > playerObj.transform.position.x) {
                 if (!hitl.collider) {
                     renderer.flipX = !flip;
-                    rb.velocity = new Vector2 (0.0f, 0.0f);
+                    rb.velocity = new Vector2 (0.0f, speedY);
                 } else {
                     renderer.flipX = !flip;
-                    rb.velocity = new Vector2(-currSpeed, 0.0f);
+                    rb.velocity = new Vector2(-currSpeed, speedY);
                 }
             } else {
                 if (!hitr.collider) {
                     renderer.flipX = flip;
-                    rb.velocity = new Vector2 (0.0f, 0.0f);
+                    rb.velocity = new Vector2 (0.0f, speedY);
                 } else {
                     renderer.flipX = flip;
-                    rb.velocity = new Vector2(currSpeed, 0.0f);
+                    rb.velocity = new Vector2(currSpeed, speedY);
                 }
             }
         } else {
@@ -105,7 +111,7 @@ public class NEnemyAI3 : MonoBehaviour
             } else {
                 renderer.flipX = flip;
             }
-            rb.velocity = new Vector2(currSpeed, 0.0f);
+            rb.velocity = new Vector2(currSpeed, speedY);
         }
 
         Debug.DrawLine(r, r - new Vector2(0.0f, castDistance), hitr.collider ? Color.green : Color.red);

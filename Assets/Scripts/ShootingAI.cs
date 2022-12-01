@@ -36,6 +36,8 @@ public class ShootingAI : MonoBehaviour
     //there is no need to change proportions if using this
     public bool not_set = true;
     public float total_velocity;
+    
+    public string alertSfx = "GuardSfx-Alert";
 
     public float maxShootPercent = 100.0f;
     public float minShootPercent = 0.0f;
@@ -111,6 +113,7 @@ public class ShootingAI : MonoBehaviour
     }
 
     void AI () {
+        var seenBefore = seen;
         seen = false;
 
         Vector2 r = transform.position;
@@ -136,6 +139,9 @@ public class ShootingAI : MonoBehaviour
                 RaycastHit2D look = Physics2D.Linecast (transform.position, playerObj.transform.position, wallPlatformColliderMask);
                 if (!look.collider || look.collider == playerObj.GetComponent<Collider2D>()) {
                     seen = true;
+                    if (!seenBefore) {
+                        if (!string.IsNullOrWhiteSpace(alertSfx) && SfxManager.Instance) SfxManager.Instance.PlaySfx(alertSfx, transform.position);
+                    }
                 }
             }
         }
@@ -151,30 +157,32 @@ public class ShootingAI : MonoBehaviour
         } else {
             shoot = false;
         }
+        
+        var speedY = rb.velocity.y;
 
         if (!shoot) {
             if (seen) {
                 if (transform.position.x > playerObj.transform.position.x) {
                     if (!hitl.collider) {
                         renderer.flipX = !flip;
-                        rb.velocity = new Vector2 (0.0f, 0.0f);
+                        rb.velocity = new Vector2 (0.0f, speedY);
                     } else if (distance < minShootRange) {
                         renderer.flipX = flip;
-                        rb.velocity = new Vector2(currSpeed, 0.0f);
+                        rb.velocity = new Vector2(currSpeed, speedY);
                     } else {
                         renderer.flipX = !flip;
-                        rb.velocity = new Vector2(-currSpeed, 0.0f);
+                        rb.velocity = new Vector2(-currSpeed, speedY);
                     }
                 } else {
                     if (!hitr.collider) {
                         renderer.flipX = flip;
-                        rb.velocity = new Vector2 (0.0f, 0.0f);
+                        rb.velocity = new Vector2 (0.0f, speedY);
                     } else if (distance < minShootRange) {
                         renderer.flipX = !flip;
-                        rb.velocity = new Vector2(-currSpeed, 0.0f);
+                        rb.velocity = new Vector2(-currSpeed, speedY);
                     } else {
                         renderer.flipX = flip;
-                        rb.velocity = new Vector2(currSpeed, 0.0f);
+                        rb.velocity = new Vector2(currSpeed, speedY);
                     }
                 }
             } else {
@@ -184,10 +192,10 @@ public class ShootingAI : MonoBehaviour
                 } else {
                     renderer.flipX = flip;
                 }
-                rb.velocity = new Vector2(currSpeed, 0.0f);
+                rb.velocity = new Vector2(currSpeed, speedY);
             }
         } else {
-            rb.velocity = new Vector2 (0.0f, 0.0f);
+            rb.velocity = new Vector2 (0.0f, speedY);
         }
 
         Debug.DrawLine(r, r - new Vector2(0.0f, castDistance), hitr.collider ? Color.green : Color.red);

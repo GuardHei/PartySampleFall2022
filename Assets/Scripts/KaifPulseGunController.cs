@@ -93,7 +93,7 @@ public class KaifPulseGunController : MonoBehaviour
         // apply velocity if contact point exists
         if (_contactPoint){
             //Applies force to any objects (if they exist)
-            applyForceToObject(Vector2.Distance(_contactPoint.point, transform.position));
+            ApplyForceToObject(Vector2.Distance(_contactPoint.point, transform.position));
             player.ApplyVelocity(-force * _pointer, forceType);
         }
 
@@ -109,13 +109,15 @@ public class KaifPulseGunController : MonoBehaviour
     }
 
     //checks if the hit hit any obstacles and applies force relative to the shot
-    private void applyForceToObject(float dist){
-        NEnemyAI3 ai;
+    private void ApplyForceToObject(float dist){
         float whichPushForce = pushBoxForce;
         if(_contactPoint.collider && ((1 << _contactPoint.collider.gameObject.layer)| obstacleLayers) == obstacleLayers){
             //Checks if an Enemy NPC is hit
-            if (_contactPoint.collider.gameObject.TryGetComponent<NEnemyAI3>(out ai)){
+            if (_contactPoint.collider.gameObject.TryGetComponent(out NEnemyAI3 ai)){
                 ai.DisableAI(NPCDisableTime);
+                whichPushForce = pushNPCForce;
+            } else if (_contactPoint.collider.gameObject.TryGetComponent(out ShootingAI sai)) {
+                sai.DisableAI(NPCDisableTime);
                 whichPushForce = pushNPCForce;
             }
             //Applies the push (on a box or NPC)

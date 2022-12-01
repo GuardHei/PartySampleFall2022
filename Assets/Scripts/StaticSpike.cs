@@ -7,7 +7,7 @@ public class StaticSpike : MonoBehaviour {
 	public string rototoDeathSfx = "RototoSfx-Death";
     
 	public void OnTriggerEnter2D(Collider2D other) {
-		if (other.gameObject.GetComponent<NEnemyAI3>())
+		if (other.gameObject.GetComponent<NEnemyAI3>() || other.gameObject.GetComponent<ShootingAI>())
 		{
 			if (!string.IsNullOrWhiteSpace(guardDeathSfx) && SfxManager.Instance) SfxManager.Instance.PlaySfx(guardDeathSfx, other.transform.position);
 			Destroy(other.gameObject);
