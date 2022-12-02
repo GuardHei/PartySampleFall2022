@@ -757,6 +757,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3300964714501738107, guid: 6174f6d1fa3f847f683dc3ccce6106f6,
         type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 449
+      objectReference: {fileID: 0}
+    - target: {fileID: 3300964714501738107, guid: 6174f6d1fa3f847f683dc3ccce6106f6,
+        type: 3}
       propertyPath: InitialModule.startColor.minMaxState
       value: 0
       objectReference: {fileID: 0}

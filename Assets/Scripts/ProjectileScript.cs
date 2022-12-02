@@ -39,7 +39,7 @@ public class ProjectileScript : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         if (name != collider.gameObject.name) {
-            Debug.Log("Projectile destroyed");
+            // Debug.Log("Projectile destroyed");
             Destroy (this.gameObject);
         }
     }

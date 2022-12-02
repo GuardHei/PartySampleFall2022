@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[RequireComponent(typeof(AudioSource))]
 public class SfxManager : MonoBehaviour
 {
     //-Create a script SfxManager where it has two arrays: first array is an array of SfxPlayer Prefabs, and the next array
@@ -17,19 +18,32 @@ public class SfxManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        AudioSource src;
+        
         if (Instance != null) {
-            var src = Instance.GetComponent<AudioSource>();
+            src = Instance.GetComponent<AudioSource>();
+            src.loop = true;
             if (!bgm) src.clip = null;
-            else if (src.clip && src.clip.name != bgm.name) src.clip = bgm;
+            else if (src.clip && src.clip.name != bgm.name) {
+                src.clip = bgm;
+                src.volume = GetComponent<AudioSource>().volume;
+                src.Play();
+            }
             Destroy(gameObject);
             return;
         }
+        
+        Instance = this;
 
-        if (bgm) GetComponent<AudioSource>().clip = bgm;
+        if (bgm) {
+            src = Instance.GetComponent<AudioSource>();
+            src.loop = true;
+            src.clip = bgm;
+            src.Play();
+        }
         
         DontDestroyOnLoad(gameObject);
-
-        Instance = this;
+        
         sfxPlayerNames = new string[sfxPlayerPrefabs.Length];
         for(int i=0; i < sfxPlayerPrefabs.Length; i++)//stores all prefab names based on given sfxPlayerFrefabs array
         {
