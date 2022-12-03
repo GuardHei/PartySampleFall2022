@@ -7,9 +7,9 @@ public class CameraFollower : MonoBehaviour {
 	public PlayerController player;
 
 	[Header("Settings")]
-	[Range(0f, 100f)]
+	[Range(0f, 1000f)]
 	public float maxHorizontalSpeed;
-	[Range(0f, 100f)]
+	[Range(0f, 1000f)]
 	public float maxVerticalSpeed;
 	[Range(0f, 10f)]
 	public float horizontalSmoothTime;

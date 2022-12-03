@@ -31,7 +31,7 @@ Transform:
   - {fileID: 5968651750293718417}
   - {fileID: 5203310473908882502}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4668747961644934445
 PrefabInstance:
@@ -45,6 +45,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Acid Barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1305569642519568570, guid: 0a52cf733b379457ab011db43e7f9021,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1305569642519568572, guid: 0a52cf733b379457ab011db43e7f9021,
         type: 3}

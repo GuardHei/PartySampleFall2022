@@ -103,7 +103,7 @@ MonoBehaviour:
   alertSfx: GuardSfx-Alert
   dead: 0
   maxShootPercent: 100
-  minShootPercent: 0
+  minShootPercent: 20
 --- !u!70 &7966275511864107365
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
