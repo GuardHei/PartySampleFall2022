@@ -14,6 +14,7 @@ public class CheckpointManager : MonoBehaviour
     private SpriteRenderer[] _renderers;
     public Color reachedColor = new Color(15, 128, 255);
     public float fadeSpeed = .1f;
+    public bool alwaysSet = false;
 
     void Awake()
     {
@@ -25,7 +26,7 @@ public class CheckpointManager : MonoBehaviour
             currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
             currentFlagsHit.Clear();
             
-            if(gameObject.tag == "Startpoint"){
+            if(gameObject.CompareTag("Startpoint")){
                 lastTouched = gameObject.transform.position;
                 player.transform.position = lastTouched;
             }
@@ -40,6 +41,12 @@ public class CheckpointManager : MonoBehaviour
             if(gameObject.transform.position == flagPos){
                 Destroy(gameObject);
             }
+        }
+
+        if (alwaysSet) {
+            lastTouched = gameObject.transform.position;
+            currentFlagsHit.Add(gameObject.transform.position);
+            reached = true;
         }
     }
 

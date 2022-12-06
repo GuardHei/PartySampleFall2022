@@ -84,7 +84,7 @@ MonoBehaviour:
   seen: 0
   wallPlatformColliderMask:
     serializedVersion: 2
-    m_Bits: 193
+    m_Bits: 192
   wallDistance: 0.8
   flip: 0
   disabled: 0

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: -88
-    y: -1027
+    x: 0
+    y: 93
     width: 1789
     height: 1027
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Hierarchy
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -301,7 +301,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1230
+    x: 1261
     y: -997
     width: 470
     height: 956
@@ -335,9 +335,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 22500000
-    m_LastClickedID: 20514
-    m_ExpandedIDs: 000000002050000000ca9a3bffffff7f
+    m_SelectedIDs: ee500000
+    m_LastClickedID: 20718
+    m_ExpandedIDs: 00000000ba50000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -365,7 +365,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: f64f0000
     m_LastClickedID: 20470
-    m_ExpandedIDs: 000000002050000022500000
+    m_ExpandedIDs: 00000000ba500000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -390,24 +390,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: e49e0100
-    m_LastClickedInstanceID: 106212
+    m_SelectedInstanceIDs: 80590000
+    m_LastClickedInstanceID: 22912
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Level 1
-      m_OriginalName: Level 1
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 20680
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 3}
     m_CreateAssetUtility:
@@ -604,8 +604,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: -88
-    y: -453.5
+    x: 0
+    y: 666.5
     width: 1317
     height: 412.5
   m_ViewDataDictionary: {fileID: 0}
@@ -625,22 +625,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Audios/Rototo SFX
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Audios/Rototo SFX
   m_LastFoldersGridSize: -1
   m_LastProjectPath: /Users/williamxie/Documents/GitHub/PartySampleFall2022
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
     scrollPos: {x: 0, y: 30.5}
-    m_SelectedIDs: 50500000
-    m_LastClickedID: 20560
-    m_ExpandedIDs: 000000002050000000ca9a3bffffff7f
+    m_SelectedIDs: 5e510000
+    m_LastClickedID: 20830
+    m_ExpandedIDs: 00000000ba500000e650000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -668,7 +668,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000002050000022500000
+    m_ExpandedIDs: 00000000ba500000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -745,8 +745,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1230
-    y: -997
+    x: 1318
+    y: 123
     width: 470
     height: 956
   m_ViewDataDictionary: {fileID: 0}
@@ -787,8 +787,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: -88
-    y: -997
+    x: 0
+    y: 123
     width: 380.5
     height: 522.5
   m_ViewDataDictionary: {fileID: 0}
@@ -797,10 +797,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 362.5}
-      m_SelectedIDs: bad7feff
-      m_LastClickedID: -75846
-      m_ExpandedIDs: bcd7feffcadcfeffb4f6feffb808ffff8a33ffff5834fffffebeffff66c4ffff96c8ffff7ecdffff56ceffff66d0ffff34d3ffffb6d6ffff12d9ffff62dcffffc0ddffffb8f5ffff06fbffff
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: da6d0000
+      m_LastClickedID: 28122
+      m_ExpandedIDs: 0e6bffffd26effff2afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -845,8 +845,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 293.5
-    y: -997
+    x: 381.5
+    y: 123
     width: 934.5
     height: 522.5
   m_ViewDataDictionary: {fileID: 0}
@@ -945,7 +945,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       floating: 0
       collapsed: 0
-      displayed: 0
+      displayed: 1
       snapOffset: {x: 0, y: 0}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
@@ -1205,7 +1205,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 293.5
+    x: 324.5
     y: -997
     width: 934.5
     height: 522.5
